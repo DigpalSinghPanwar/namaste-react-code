@@ -13,12 +13,20 @@ const Body = () => {
     fetchData();
   }, []);
 
-  // Whenever state variables update, react triggersa reconciliation cycle(re-renders the component)
+  // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
+
+  // original swiggy api but we need to use cors plugin.
+  // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+
+  // In Namaste React course we are using cors proxy
+  // "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  // But we are using htmlDriven cors proxy.
 
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
+
     const json = await data.json();
     console.log(json);
     setListOfRestaurant(
