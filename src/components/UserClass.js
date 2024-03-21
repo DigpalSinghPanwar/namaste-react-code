@@ -27,9 +27,79 @@ class UserClass extends Component {
     // console.log(this.props.name + "child component Did Mount");
   }
 
-  componentDidUpdate() {
-    console.log("child component did update");
-  }
+  // // below both code do the same work
+  // useEffect( () => {
+  // //  code
+  // }, [count, count2] )
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     this.state.count !== prevState.count ||
+  //     this.state.count2 !== prevState.count2
+  //   ) {
+  //     // code
+  //   }
+  //   console.log("child component did update");
+  // }
+
+  // below both code do the same work
+  //   useEffect( () => {
+  // // code
+  //   }, [count] )
+
+  //   useEffect( () => {
+  // // code
+  //   }, [count2] )
+
+  //   componentDidUpdate(prevProps, prevState) {
+  //     if (
+  //       this.state.count !== prevState.count     ) {
+  //       // code
+  //     }
+  //     if (
+  //       this.state.count2 !== prevState.count2
+  //     ) {
+  //       // code
+  //     }
+  //     console.log("child component did update");
+  //   }
+
+  // componentDidMount() {
+  //   this.timer = setInterval(() => {
+  //     console.log("hello world");
+  //   }, 1000);
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.timer);
+  //   console.log("child component unmount");
+  // }
+
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     console.log("hello world");
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(timer)
+  //   }
+  // }, [])
+
+  // Can write this
+  //  async componentDidMount() {
+  //   // code
+  // }
+
+  // Don't do this
+  // useEffect(async () => {
+  //   // code
+  // }, [])
+
+  // Can do this
+  // useEffect(() => {
+  //   async function fetchData() {}
+  //   fetchData();
+  // }, [])
 
   componentWillUnmount() {
     console.log("child component unmount");
