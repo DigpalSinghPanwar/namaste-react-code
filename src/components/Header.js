@@ -8,9 +8,9 @@ export default Header = () => {
   // if no dependency array ⇒ useEffect is called on every render
   // if dependency array is empty = [] ⇒ useEffect is called on initial render(just once)
   // if dependency array is [btnNameReact] ⇒ called everytime btnNameReact is updated.
-  useEffect(() => {
-    console.log("useEffect Rendered");
-  }, []);
+  // useEffect(() => {
+  //   console.log("useEffect Rendered");
+  // }, []);
 
   return (
     <div className="header">

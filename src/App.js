@@ -9,7 +9,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
-  console.log(<Body />); // Object
+  // console.log(<Body />); // Object
   // outlet is replaced with the actual components
   return (
     <div className="app">
