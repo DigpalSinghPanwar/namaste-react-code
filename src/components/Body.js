@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer.js";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
@@ -35,6 +36,14 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (!onlineStatus) {
+    return (
+      <h1>Looks like you're offline!! Please check your Internet Connection</h1>
+    );
+  }
 
   // Conditional Rendering
   if (filteredRestaurant.length === 0) {

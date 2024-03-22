@@ -23,6 +23,10 @@
   margin: 10px;
 }
 
+.nav-items > ul > li > a {
+  text-decoration: none;
+}
+
 .res-card:hover {
   cursor: pointer;
   border: 1px solid black;
