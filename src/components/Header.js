@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 export default Header = () => {
   const [btnReact, setbtnReact] = useState("login");
@@ -14,6 +15,8 @@ export default Header = () => {
   // useEffect(() => {
   //   console.log("useEffect Rendered");
   // }, []);
+
+  const user = useContext(UserContext);
 
   return (
     <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-yellow-50 lg:bg-green-50">
@@ -46,6 +49,7 @@ export default Header = () => {
           >
             {btnReact}
           </button>
+          <li className="px-4 font-bold">{user.loggedInUser}</li>
         </ul>
       </div>
     </div>

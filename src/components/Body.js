@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import React, { useContext, useEffect, useState } from "react";
+import RestaurantCard, { fastDeliveryLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer.js";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import UserContext from "../utils/UserContext.js";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
@@ -9,9 +10,15 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   useEffect(() => {
     fetchData();
   }, []);
+
+  // console.log("restaurant", listOfRestaurants);
+
+  const FastDeliveryRestaurantCard = fastDeliveryLabel(RestaurantCard);
 
   // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
@@ -28,7 +35,7 @@ const Body = () => {
     );
 
     const json = await data.json();
-    console.log(json);
+    // console.log("API data", json);
     setListOfRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -87,11 +94,25 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <div className="search m-4 p-4 flex items-center">
+          <input
+            className="border border-black "
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
-        {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-        ))}
+        {filteredRestaurant.map((restaurant) => {
+          return restaurant.info.sla.deliveryTime < 25 ? (
+            <FastDeliveryRestaurantCard
+              key={restaurant.info.id}
+              resData={restaurant}
+            />
+          ) : (
+            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          );
+        })}
       </div>
     </div>
   );
