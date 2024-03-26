@@ -6,7 +6,6 @@ import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
-  // let cardIndex;
   const resMenu = useRestaurantMenu(id);
 
   const dummy = "Dummy Data";
@@ -16,8 +15,9 @@ const RestaurantMenu = () => {
   if (resMenu === null) {
     return <Shimmer />;
   }
+
   const { name, costForTwoMessage, avgRatingString, cuisines } =
-    resMenu?.data?.cards[0]?.card?.card?.info;
+    resMenu?.data?.cards[2]?.card?.card?.info;
 
   const handleClick = (index) => {
     if (showIndex === index) {
@@ -28,7 +28,7 @@ const RestaurantMenu = () => {
   };
 
   const categories =
-    resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (item) =>
         item?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -38,7 +38,7 @@ const RestaurantMenu = () => {
     <div className="text-center">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <p className="font-bold text-lg">
-        {cuisines.join(", ")} - {costForTwoMessage}
+        {cuisines?.join(", ")} - {costForTwoMessage}
       </p>
       {categories?.map((category, index) => (
         // controlled component
