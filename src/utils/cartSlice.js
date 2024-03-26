@@ -13,12 +13,12 @@ const cartSlice = createSlice({
     removeItem: (state, action) => {
       state.items.pop();
     },
-    // original state = ["pizza"]   for example
+    // original state = {items : ["pizza"] }   for example
     clearCart: (state) => {
-      // console.log(state);  // ["pizza"], we see proxy object, given by redux, so we use current(state)
+      // console.log(state);  // {items : ["pizza"] }, we see proxy object, given by redux, so we use current(state)
       // console.log(current(state));  // using this we can see the proxy object, current is from RTK
       // state = []  // this is not referring to the original state, it will not empty the original state
-      // console.log(state);  // []   but original state is still ["pizza"], the state here is local
+      // console.log(state);  // []   but original state is still {items : ["pizza"] }, the state here is local
 
       //RTK - either Mutate the existing  state or return a new State
       state.items.length = 0; // originalState or state = []
