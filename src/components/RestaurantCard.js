@@ -9,6 +9,8 @@ export default RestaurantCard = (props) => {
   const { cloudinaryImageId, avgRating, name, cuisines, costForTwo, sla } =
     resData?.info;
 
+  // console.log(resData);
+
   const navigateFunction = () => {
     navigate(`/restaurants/${resData.info.id}`);
   };
@@ -16,6 +18,7 @@ export default RestaurantCard = (props) => {
   const User = useContext(UserContext);
   return (
     <div
+      data-testid="resCard"
       onClick={navigateFunction}
       className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 cursor-pointer"
     >

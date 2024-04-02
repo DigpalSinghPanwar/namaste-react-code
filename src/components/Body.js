@@ -57,7 +57,7 @@ const Body = () => {
     const filteredList = filteredRestaurant.filter(
       (res) => res.info.avgRating >= 4.4
     );
-    console.log(filteredList);
+    // console.log(filteredList);
     setFilteredRestaurant(filteredList);
   };
 
@@ -78,6 +78,7 @@ const Body = () => {
       <div className="filter flex">
         <div className="search m-4 p-4 flex items-center">
           <input
+            data-testid="searchInput"
             onChange={(e) => setSearchText(e.target.value)}
             type="text"
             className="border border-solid border-black"
